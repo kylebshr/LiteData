@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275D5CDB1D0C8C04003FB2E8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 275D5CD91D0C8C04003FB2E8 /* Model.xcdatamodeld */; };
+		27A520EF1D0C933900EB8CA5 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520ED1D0C933900EB8CA5 /* Post+CoreDataProperties.swift */; };
+		27A520F01D0C933900EB8CA5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520EE1D0C933900EB8CA5 /* Post.swift */; };
 		3A5B43AF78B993CDC0A0CE80 /* Pods_LiteData_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544449E32E0BC67FBF826F05 /* Pods_LiteData_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		11BD511BF3E3F0781DB3254D /* Pods-LiteData_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteData_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiteData_Example/Pods-LiteData_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		275D5CDA1D0C8C04003FB2E8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		27A520ED1D0C933900EB8CA5 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		27A520EE1D0C933900EB8CA5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3AAC29B89175D5D6978349B5 /* LiteData.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LiteData.podspec; path = ../LiteData.podspec; sourceTree = "<group>"; };
 		544449E32E0BC67FBF826F05 /* Pods_LiteData_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiteData_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BD38678BB0772FAD75108B /* Pods_LiteData_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiteData_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,9 +101,12 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				27A520ED1D0C933900EB8CA5 /* Post+CoreDataProperties.swift */,
+				27A520EE1D0C933900EB8CA5 /* Post.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				275D5CD91D0C8C04003FB2E8 /* Model.xcdatamodeld */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for LiteData";
@@ -360,7 +369,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				27A520EF1D0C933900EB8CA5 /* Post+CoreDataProperties.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				275D5CDB1D0C8C04003FB2E8 /* Model.xcdatamodeld in Sources */,
+				27A520F01D0C933900EB8CA5 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +587,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		275D5CD91D0C8C04003FB2E8 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				275D5CDA1D0C8C04003FB2E8 /* Model.xcdatamodel */,
+			);
+			currentVersion = 275D5CDA1D0C8C04003FB2E8 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }

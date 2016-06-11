@@ -7,12 +7,35 @@
 //
 
 import UIKit
+import LiteData
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        var stack: CoreDataStack!
+
+        do {
+            stack = try CoreDataStack(modelName: "Model")
+        } catch {
+            fatalError("\(error)")
+        }
+
+        let post: Post = stack.context.insert()
+
+        post.identifier = NSUUID().UUIDString
+        post.date = NSDate().timeIntervalSince1970
+        post.text = "Hello!"
+        post.likes = 1000
+
+        do {
+            try stack.context.save()
+        } catch {
+            fatalError("\(error)")
+        }
+
+
     }
 
     override func didReceiveMemoryWarning() {
