@@ -8,6 +8,9 @@
 
 import CoreData
 
+/**
+ *  Conform to `ManagedObjectType` to expose your object to LiteData methods.
+ */
 public protocol ManagedObjectType: EntityType {
 
     /// This property will be used for `sortedFetchRequest` and `sortedFetchedResults`.

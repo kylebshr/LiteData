@@ -53,7 +53,7 @@ public class LiteStack {
                                 Defaults to `NSBundle.mainBundle()`.
      - parameter storeLocation: The location in which to store the database files.
                                 Defaults to the documents directory.
-     - paramter storeName:      The name of the file for the store. Defaults to [modelName].sqlite.
+     - parameter storeName:      The name of the file for the store. Defaults to `modelName`.sqlite.
      - parameter storeType:     The type of store to initialize the persistent store with.
                                 Defaults to `NSSQLiteStoreType`.
      - parameter storeOptions:  The store options for the persistent store. 

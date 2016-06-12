@@ -6,6 +6,9 @@
 //  Copyright © 2016 Kyle Bashour. All rights reserved.
 //
 
+/**
+ *  Provides `entityName` to map classes to entities.
+ */
 public protocol EntityType {
 
     /// The name of the entity in the data model. 
