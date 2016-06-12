@@ -1,2 +1,2 @@
 #!/bin/sh
-jazzy && git subtree push --prefix docs origin gh-pages
+jazzy && git subtree push --prefix docs origin gh-pages && rm -r docs
