@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LiteData  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="LiteData  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">LiteData Docs</a> (88% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">LiteData Reference</a>
+        <img id="carat" src="img/carat.png" />
+        LiteData  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/LiteStack.html">LiteStack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/EntityType.html">EntityType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P8LiteData10KeyCodable">KeyCodable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ManagedObjectType.html">ManagedObjectType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#litedata' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='litedata'>LiteData</h1>
+
+<p><a href="http://cocoapods.org/pods/LiteData"><img src="https://img.shields.io/cocoapods/v/LiteData.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/LiteData"><img src="https://img.shields.io/cocoapods/l/LiteData.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/LiteData"><img src="https://img.shields.io/cocoapods/p/LiteData.svg?style=flat" alt="Platform"></a></p>
+<a href='#about' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='about'>About</h2>
+
+<p>LiteData provides a very simple core data stack, and a few protocols to make it nice to work with NSManagedObjects and the like. It is heavily influenced by the talk <a href="https://realm.io/news/tryswift-daniel-eggert-modern-core-data/">Modern Core Data</a> by <a href="https://github.com/danieleggert">Daniel Eggert</a>. </p>
+
+<p>Because it&rsquo;s so lightweight there are couple caveats:</p>
+
+<ul>
+<li>NSManagedObject class names <em>must</em> match the entity name.</li>
+<li>Though it makes the simple things <em>very</em> easy, the more complicated things must be done almost completely manually.</li>
+</ul>
+
+<p>That being said, I&rsquo;m definitely willing to add more features. This is my first foray into CoreData, so as I use it more, this library will evolve and improve. </p>
+<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='getting-started'>Getting Started</h2>
+
+<p>LiteData provides an easy to use core data stack with sensible defaults. Creating a stack is as simple as telling it the model name:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">stack</span><span class="p">:</span> <span class="kt">LiteStack</span><span class="o">!</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">stack</span> <span class="o">=</span> <span class="kt">LiteStack</span><span class="p">(</span><span class="nv">modelName</span><span class="p">:</span> <span class="s">"Model"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Error setting up stack: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Conforming to <code>ManagedObjectType</code> gives your NSManagedObjects the power of LiteData. Return some default descriptors, and you get effortless fetch requests and fetched results controllers:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Post</span><span class="p">:</span> <span class="kt">ManagedObjectType</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultSortDescriptors</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSSortDescriptor</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="kt">NSSortDescriptor</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"date"</span><span class="p">,</span> <span class="k">as</span><span class="nv">cending</span><span class="p">:</span> <span class="kc">true</span><span class="p">)]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Later */</span>
+
+<span class="c1">// Create a post</span>
+<span class="k">let</span> <span class="nv">post</span><span class="p">:</span> <span class="kt">Post</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="nf">insert</span><span class="p">()</span>
+
+<span class="c1">// Create a fetched results controller</span>
+<span class="k">let</span> <span class="nv">frc</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="nf">sortedFetchedResults</span><span class="p">(</span><span class="nv">ofType</span><span class="p">:</span> <span class="kt">Post</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+
+<span class="c1">// Get a simple fetch request</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">Post</span><span class="o">.</span><span class="n">sortedFetchRequest</span>
+</code></pre>
+
+<p>There&rsquo;s also a <code>KeyCodable</code> protocol you can implement if you&rsquo;d like to, which makes it much easier and safer to work with keys:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Post</span><span class="p">:</span> <span class="kt">KeyCodable</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="kt">Key</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">text</span>
+        <span class="k">case</span> <span class="n">likes</span>
+        <span class="k">case</span> <span class="n">date</span>
+        <span class="k">case</span> <span class="n">identifier</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Later */</span>
+
+<span class="kd">extension</span> <span class="kt">Post</span><span class="p">:</span> <span class="kt">ManagedObjectType</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultSortDescriptors</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSSortDescriptor</span><span class="p">]</span> <span class="p">{</span>
+         <span class="k">let</span> <span class="nv">dateDescriptor</span> <span class="o">=</span> <span class="kt">NSSortDescriptor</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">rawValue</span><span class="p">,</span> <span class="k">as</span><span class="nv">cending</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+         <span class="k">let</span> <span class="nv">likesDescriptor</span> <span class="o">=</span> <span class="kt">NSSortDescriptor</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">rawValue</span><span class="p">,</span> <span class="k">as</span><span class="nv">cending</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">dateDescriptor</span><span class="p">,</span> <span class="n">likesDescriptor</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+
+<ul>
+<li>Xcode 7.3+</li>
+<li>iOS 9+</li>
+</ul>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+
+<p>LiteData is available through CocoaPods, Carthage and Swift Package Manager.</p>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+
+<span class="n">pod</span> <span class="s2">"LiteData"</span>
+</code></pre>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+<pre class="highlight plaintext"><code>github "kylebshr/LiteData"
+</code></pre>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>LiteData is available under the MIT license. See the LICENSE file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://github.com/kylebshr/LiteData" target="_blank" rel="external">Kyle Bashour</a>. All rights reserved. (Last updated: 2016-06-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
