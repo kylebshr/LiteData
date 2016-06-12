@@ -4,7 +4,18 @@
 [![License](https://img.shields.io/cocoapods/l/LiteData.svg?style=flat)](http://cocoapods.org/pods/LiteData)
 [![Platform](https://img.shields.io/cocoapods/p/LiteData.svg?style=flat)](http://cocoapods.org/pods/LiteData)
 
-## Example
+## About
+
+LiteData provides a very simple core data stack, and a few protocols to make it nice to work with NSManagedObjects and the like. It is heavily influenced by the talk [Modern Core Data](https://realm.io/news/tryswift-daniel-eggert-modern-core-data/) by [Daniel Eggert](https://github.com/danieleggert). 
+
+Because it's so lightweight there are couple caveats:
+
+- NSManagedObject class names *must* match the entity name.
+- Though it makes the simple things *very* easy, the more complicated things must be done almost completely manually.
+
+That being said, I'm definitely willing to add more features. This is my first foray into CoreData, so as I use it more, this library will evolve and improve. 
+
+## Getting Started
 
 LiteData provides an easy to use core data stack with sensible defaults. Creating a stack is as simple as telling it the model name:
 
@@ -39,7 +50,7 @@ let frc = stack.context.sortedFetchedResults(ofType: Post.self)
 let request = Post.sortedFetchRequest
 ```
 
-There's also a `KeyCodable` protocol you can implement if you'd like to, which makes it much easier to work with keys:
+There's also a `KeyCodable` protocol you can implement if you'd like to, which makes it much easier and safer to work with keys:
 
 ```swift
 extension Post: KeyCodable {
@@ -65,18 +76,26 @@ extension Post: ManagedObjectType {
 
 ## Requirements
 
+- Xcode 7.3+
+- iOS 9+
+
 ## Installation
 
-LiteData is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+LiteData is available through CocoaPods, Carthage and Swift Package Manager.
+
+### CocoaPods
 
 ```ruby
+use_frameworks!
+
 pod "LiteData"
 ```
 
-## Author
+### Carthage
 
-Kyle Bashour, kylebshr@me.com
+```
+github "kylebshr/LiteData"
+```
 
 ## License
 
