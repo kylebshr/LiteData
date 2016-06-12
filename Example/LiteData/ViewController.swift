@@ -12,7 +12,7 @@ import LiteData
 
 class ViewController: UITableViewController {
 
-    var stack: CoreDataStack!
+    var stack: LiteStack!
 
     lazy var frc: NSFetchedResultsController =
         self.stack.context.sortedFetchedResults(ofType: Post.self)

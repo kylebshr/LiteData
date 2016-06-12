@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    lazy var stack: CoreDataStack = {
+    lazy var stack: LiteStack = {
         do {
-            return try CoreDataStack(modelName: "Model")
+            return try LiteStack(modelName: "Model")
         } catch {
             fatalError("Unable to create core data stack: \(error)")
         }
