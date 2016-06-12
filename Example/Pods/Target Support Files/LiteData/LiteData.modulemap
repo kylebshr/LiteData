@@ -1,6 +1,0 @@
-framework module LiteData {
-  umbrella header "LiteData-umbrella.h"
-
-  export *
-  module * { export * }
-}
