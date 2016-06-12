@@ -7,16 +7,52 @@
 //
 
 import UIKit
+import LiteData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    lazy var stack: CoreDataStack = {
+        do {
+            return try CoreDataStack(modelName: "Model")
+        } catch {
+            fatalError("Unable to create core data stack: \(error)")
+        }
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        setUpInitialData()
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController = storyboard.instantiateInitialViewController() as! ViewController
+
+        rootViewController.stack = stack
+
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        window?.makeKeyAndVisible()
+
         return true
+    }
+
+    func setUpInitialData() {
+
+        let objects = stack.context.sortedFetchedResults(ofType: Post.self).fetchedObjects
+
+        guard objects == nil || objects?.count == 0 else {
+            return
+        }
+
+        for i in 0...200 {
+            let post: Post = stack.context.insert()
+            post.identifier = NSUUID().UUIDString
+            post.date = NSDate().timeIntervalSince1970
+            post.text = "This is post number \(i) 🎉"
+            post.likes = random() % 100
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -25,8 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        do {
+            try stack.context.save()
+        } catch {
+            fatalError("Unable to save data: \(error)")
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

@@ -7,41 +7,64 @@
 //
 
 import UIKit
+import CoreData
 import LiteData
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
+
+    var stack: CoreDataStack!
+
+    lazy var frc: NSFetchedResultsController =
+        self.stack.context.sortedFetchedResults(ofType: Post.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var stack: CoreDataStack!
+        setUpUI()
+
+        frc.delegate = self
 
         do {
-            stack = try CoreDataStack(modelName: "Model")
+            try frc.performFetch()
         } catch {
-            fatalError("\(error)")
+            fatalError("Error performing fetch: \(error)")
         }
+    }
 
+    func setUpUI() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertPost))
+        navigationItem.rightBarButtonItem = addButton
+        navigationItem.title = "LiteData Example"
+    }
+
+    dynamic func insertPost() {
         let post: Post = stack.context.insert()
 
         post.identifier = NSUUID().UUIDString
-        post.date = NSDate().timeIntervalSince1970
-        post.text = "Hello!"
-        post.likes = 1000
-
-        do {
-            try stack.context.save()
-        } catch {
-            fatalError("\(error)")
-        }
-
-
+        post.date = NSDate().timeIntervalSince1970 - 100000
+        post.text = "Here's a post you inserted!"
+        post.likes = random() % 100
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return frc.sections!.count
     }
 
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return frc.sections![section].numberOfObjects
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
+        let post = frc.sections![indexPath.section].objects![indexPath.row] as! Post
+        cell.textLabel?.text = post.text
+        cell.detailTextLabel?.text = "\(post.likes)"
+        return cell
+    }
 }
 
+extension ViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.reloadData()
+    }
+}

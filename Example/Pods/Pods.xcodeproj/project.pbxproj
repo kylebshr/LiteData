@@ -21,8 +21,9 @@
 		1ED8C77E9422C66BBF56E6C10D5826F0 /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D365431FBA3C40A9570E9266B44005D7 /* NMBExceptionCapture.m */; };
 		23626BC4DDA1A2E90A155728F57802FF /* DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC1174FD42CD6684C5DE79AC08B57C5 /* DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275D5CD81D0C8B84003FB2E8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D5CD71D0C8B84003FB2E8 /* CoreDataStack.swift */; };
-		27A520E71D0C90CD00EB8CA5 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520E61D0C90CD00EB8CA5 /* Entity.swift */; };
-		27A520EA1D0C918800EB8CA5 /* NSManagedObject+EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520E91D0C918800EB8CA5 /* NSManagedObject+EntityType.swift */; };
+		275F1C081D0DE21200DC6DCD /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F1C071D0DE21200DC6DCD /* ManagedObjectType.swift */; };
+		275F1C0A1D0DE8B000DC6DCD /* KeyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F1C091D0DE8B000DC6DCD /* KeyCodable.swift */; };
+		27A520E71D0C90CD00EB8CA5 /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520E61D0C90CD00EB8CA5 /* EntityType.swift */; };
 		27A520EC1D0C91B100EB8CA5 /* NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A520EB1D0C91B100EB8CA5 /* NSManagedObjectContext.swift */; };
 		27B90DDB68D67852867C2D87FA33FDE4 /* HooksPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C369DE47B8FBDDF56994EF084D14F12 /* HooksPhase.swift */; };
 		2D6D88484BBE72AE1DEB85DB2914B952 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */; };
@@ -152,8 +153,9 @@
 		22BF65FFEC8A084057E63EDF139D2BD1 /* PostNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostNotification.swift; path = Sources/Nimble/Matchers/PostNotification.swift; sourceTree = "<group>"; };
 		23D3F787478B2953573939A0E8511140 /* Nimble-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-prefix.pch"; sourceTree = "<group>"; };
 		275D5CD71D0C8B84003FB2E8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		27A520E61D0C90CD00EB8CA5 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		27A520E91D0C918800EB8CA5 /* NSManagedObject+EntityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+EntityType.swift"; sourceTree = "<group>"; };
+		275F1C071D0DE21200DC6DCD /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
+		275F1C091D0DE8B000DC6DCD /* KeyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCodable.swift; sourceTree = "<group>"; };
+		27A520E61D0C90CD00EB8CA5 /* EntityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		27A520EB1D0C91B100EB8CA5 /* NSManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContext.swift; sourceTree = "<group>"; };
 		27FF2E64838AFB12A4C1DD09BBD16D73 /* Pods-LiteData_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LiteData_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		299FCFFDCC88E9151397B8D50F79E36E /* World+DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "World+DSL.swift"; path = "Sources/Quick/DSL/World+DSL.swift"; sourceTree = "<group>"; };
@@ -336,7 +338,9 @@
 		27A520E51D0C90B100EB8CA5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				27A520E61D0C90CD00EB8CA5 /* Entity.swift */,
+				27A520E61D0C90CD00EB8CA5 /* EntityType.swift */,
+				275F1C071D0DE21200DC6DCD /* ManagedObjectType.swift */,
+				275F1C091D0DE8B000DC6DCD /* KeyCodable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -344,7 +348,6 @@
 		27A520E81D0C917600EB8CA5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				27A520E91D0C918800EB8CA5 /* NSManagedObject+EntityType.swift */,
 				27A520EB1D0C91B100EB8CA5 /* NSManagedObjectContext.swift */,
 			);
 			name = Extensions;
@@ -843,10 +846,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27A520EA1D0C918800EB8CA5 /* NSManagedObject+EntityType.swift in Sources */,
+				275F1C0A1D0DE8B000DC6DCD /* KeyCodable.swift in Sources */,
 				275D5CD81D0C8B84003FB2E8 /* CoreDataStack.swift in Sources */,
+				275F1C081D0DE21200DC6DCD /* ManagedObjectType.swift in Sources */,
 				DD48677A3C42E413ACDE73BC5284B388 /* LiteData-dummy.m in Sources */,
-				27A520E71D0C90CD00EB8CA5 /* Entity.swift in Sources */,
+				27A520E71D0C90CD00EB8CA5 /* EntityType.swift in Sources */,
 				27A520EC1D0C91B100EB8CA5 /* NSManagedObjectContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

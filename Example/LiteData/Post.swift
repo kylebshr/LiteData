@@ -8,10 +8,14 @@
 
 import Foundation
 import CoreData
+import LiteData
 
 
 class Post: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    @NSManaged var text: String
+    @NSManaged var likes: Int
+    @NSManaged var date: NSTimeInterval
+    @NSManaged var identifier: String
 
 }
