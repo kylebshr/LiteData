@@ -24,6 +24,8 @@ class ViewController: UITableViewController {
 
         frc.delegate = self
 
+        Post.sortedFetchRequest
+
         do {
             try frc.performFetch()
         } catch {
