@@ -15,6 +15,10 @@ Because it's so lightweight there are couple caveats:
 
 That being said, I'm definitely willing to add more features. This is my first foray into CoreData, so as I use it more, this library will evolve and improve. 
 
+## Documentation
+
+[Jazzy](https://github.com/realm/jazzy) docs available [here](https://kylebshr.github.io/LiteData/).
+
 ## Getting Started
 
 LiteData provides an easy to use core data stack with sensible defaults. Creating a stack is as simple as telling it the model name:
@@ -81,7 +85,7 @@ extension Post: ManagedObjectType {
 
 ## Installation
 
-LiteData is available through CocoaPods, Carthage and Swift Package Manager.
+LiteData is available through CocoaPods and Carthage.
 
 ### CocoaPods
 
