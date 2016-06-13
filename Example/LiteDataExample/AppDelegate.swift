@@ -26,14 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setUpInitialData()
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let rootViewController = storyboard.instantiateInitialViewController() as! ViewController
-
-        rootViewController.stack = stack
-
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-        window?.makeKeyAndVisible()
+        ((window!.rootViewController as! UINavigationController).viewControllers[0] as! ViewController).stack = stack
 
         return true
     }
