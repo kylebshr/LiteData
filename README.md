@@ -1,3 +1,5 @@
+![LiteData Logo](img/LiteData.png)
+
 # LiteData
 
 [![Version](https://img.shields.io/cocoapods/v/LiteData.svg?style=flat)](http://cocoapods.org/pods/LiteData)
