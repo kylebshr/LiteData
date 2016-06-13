@@ -31,16 +31,11 @@ class ViewController: UITableViewController {
         } catch {
             fatalError("Error performing fetch: \(error)")
         }
-
-        let things: [Post] = stack.context.all(where: Post.Key.likes, matches: 300)
-        print(things)
-        print(stack.context.all() as [Post])
     }
 
     func setUpUI() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertPost))
         navigationItem.rightBarButtonItem = addButton
-        navigationItem.title = "LiteData Example"
     }
 
     dynamic func insertPost() {
@@ -49,7 +44,7 @@ class ViewController: UITableViewController {
         post.identifier = NSUUID().UUIDString
         post.date = NSDate().timeIntervalSince1970 - 100000
         post.text = "Here's a post you inserted!"
-        post.likes = random() % 100
+        post.likes = random() % 30
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -64,8 +59,19 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         let post = frc.sections![indexPath.section].objects![indexPath.row] as! Post
         cell.textLabel?.text = post.text
-        cell.detailTextLabel?.text = "\(post.likes)"
+        cell.detailTextLabel?.text = "\(post.likes) \(post.likes == 1 ? "like" : "likes")"
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("filter", sender: self)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? FilterViewController {
+            vc.stack = stack
+            vc.post = frc.objectAtIndexPath(tableView.indexPathForSelectedRow!) as! Post
+        }
     }
 }
 

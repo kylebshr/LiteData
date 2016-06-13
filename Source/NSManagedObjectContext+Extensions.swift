@@ -65,12 +65,12 @@ extension NSManagedObjectContext {
     }
 
     public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(predicate predicate: NSPredicate) -> [ObjectType] {
-        let request = ObjectType.sortedFetchRequest
+        let request = NSFetchRequest(entityName: ObjectType.entityName)
         request.predicate = predicate
         return all(request: request)
     }
 
-    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(request request: NSFetchRequest = ObjectType.sortedFetchRequest) -> [ObjectType] {
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(request request: NSFetchRequest = NSFetchRequest(entityName: ObjectType.entityName)) -> [ObjectType] {
         do {
             guard let objects = try executeFetchRequest(request) as? [ObjectType] else {
                 fatalError("Unable to fetch class \(ObjectType.self) with entityName \(ObjectType.entityName)")

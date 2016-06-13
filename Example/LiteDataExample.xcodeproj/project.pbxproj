@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275718911D0E51BA00580E07 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275718901D0E51BA00580E07 /* FilterViewController.swift */; };
 		275F1C691D0DF77200DC6DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275F1C681D0DF77200DC6DCD /* Assets.xcassets */; };
 		275F1C6C1D0DF77200DC6DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275F1C6A1D0DF77200DC6DCD /* LaunchScreen.storyboard */; };
 		275F1C771D0DF77200DC6DCD /* LiteDataExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F1C761D0DF77200DC6DCD /* LiteDataExampleTests.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		275718901D0E51BA00580E07 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		275F1C5B1D0DF77200DC6DCD /* LiteDataExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiteDataExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275F1C681D0DF77200DC6DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275F1C6B1D0DF77200DC6DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				275F1C8F1D0DF78B00DC6DCD /* AppDelegate.swift */,
 				275F1C911D0DF79700DC6DCD /* ViewController.swift */,
+				275718901D0E51BA00580E07 /* FilterViewController.swift */,
 				275F1CA81D0DFADB00DC6DCD /* Post.swift */,
 				275F1CA91D0DFADB00DC6DCD /* Post+LiteData.swift */,
 				275F1C931D0DF7A600DC6DCD /* Main.storyboard */,
@@ -315,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275718911D0E51BA00580E07 /* FilterViewController.swift in Sources */,
 				275F1C921D0DF79700DC6DCD /* ViewController.swift in Sources */,
 				275F1C901D0DF78B00DC6DCD /* AppDelegate.swift in Sources */,
 				275F1C971D0DF7C200DC6DCD /* Model.xcdatamodeld in Sources */,

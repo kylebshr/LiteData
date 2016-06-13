@@ -46,12 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
 
-        for i in 0...200 {
+        for i in 0...500 {
             let post: Post = stack.context.insert()
             post.identifier = NSUUID().UUIDString
             post.date = NSDate().timeIntervalSince1970
             post.text = "This is post number \(i) 🎉"
-            post.likes = random() % 100
+            post.likes = random() % 30
         }
     }
 
