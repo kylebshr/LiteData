@@ -72,9 +72,9 @@ extension Post: KeyCodable {
 
 extension Post: ManagedObjectType {
     static var defaultSortDescriptors: [NSSortDescriptor] {
-    	 let dateDescriptor = NSSortDescriptor(key: Key.date.rawValue, ascending: true)
-    	 let likesDescriptor = NSSortDescriptor(key: Key.likes.rawValue, ascending: true)
-        return [dateDescriptor, likesDescriptor]
+    	let dateDescriptor = NSSortDescriptor(key: Key.date.rawValue, ascending: true)
+    	let likesDescriptor = NSSortDescriptor(key: Key.likes.rawValue, ascending: true)
+    	return [dateDescriptor, likesDescriptor]
     }
 }
 ```
