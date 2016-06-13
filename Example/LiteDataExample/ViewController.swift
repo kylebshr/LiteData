@@ -31,6 +31,11 @@ class ViewController: UITableViewController {
         } catch {
             fatalError("Error performing fetch: \(error)")
         }
+
+        let things: [Post] = stack.context.all(where: Post.Key.likes, matches: 300)
+        print(things)
+        let all: [Post] = stack.context.all()
+        print(all)
     }
 
     func setUpUI() {

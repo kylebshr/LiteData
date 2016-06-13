@@ -8,6 +8,10 @@
 
 import CoreData
 
+public protocol Context {
+    associatedtype TManagedObjectType: NSManagedObject
+}
+
 extension NSManagedObjectContext {
 
     /**
@@ -22,7 +26,7 @@ extension NSManagedObjectContext {
 
      - returns: The NSManagedObject created within the context.
      */
-    public func insert<ObjectType: NSManagedObject where ObjectType: EntityType>() -> ObjectType {
+    public func insert<ObjectType: NSManagedObject where ObjectType: ManagedObjectType>() -> ObjectType {
 
         guard let object = NSEntityDescription
             .insertNewObjectForEntityForName(ObjectType.entityName, inManagedObjectContext: self) as? ObjectType else {
@@ -43,7 +47,7 @@ extension NSManagedObjectContext {
 
      - returns: The NSFetchedResultsController initialized with the given type, cache, and the default sort descriptors.
      */
-    public func sortedFetchedResults<ObjectType: NSManagedObject where ObjectType: ManagedObjectType>(
+    public func sortedFetchedResults<ObjectType: ManagedObjectType>(
         ofType type: ObjectType.Type,
         cacheName: String? = nil) -> NSFetchedResultsController {
 
@@ -53,5 +57,36 @@ extension NSManagedObjectContext {
             sectionNameKeyPath: type.defaultSortDescriptors.first?.key,
             cacheName: cacheName
         )
+    }
+
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType>() -> [ObjectType] {
+
+        let request = ObjectType.sortedFetchRequest
+
+        do {
+            guard let objects = try executeFetchRequest(request) as? [ObjectType] else {
+                fatalError("Unable to fetch class \(ObjectType.self) with entityName \(ObjectType.entityName)")
+            }
+            return objects
+        } catch {
+            fatalError("Error fetching: \(error)")
+        }
+    }
+
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(`where` key: ObjectType.Key, matches value: AnyObject) -> [ObjectType] {
+
+        let request = ObjectType.sortedFetchRequest
+        let predicate = NSPredicate(format: "\(key.rawValue) = %@", argumentArray: [value])
+
+        request.predicate = predicate
+
+        do {
+            guard let objects = try executeFetchRequest(request) as? [ObjectType] else {
+                fatalError("Unable to fetch class \(ObjectType.self) with entityName \(ObjectType.entityName)")
+            }
+            return objects
+        } catch {
+            fatalError("Error fetching: \(error)")
+        }
     }
 }
