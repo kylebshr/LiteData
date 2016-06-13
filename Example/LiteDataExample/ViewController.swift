@@ -34,8 +34,7 @@ class ViewController: UITableViewController {
 
         let things: [Post] = stack.context.all(where: Post.Key.likes, matches: 300)
         print(things)
-        let all: [Post] = stack.context.all()
-        print(all)
+        print(stack.context.all() as [Post])
     }
 
     func setUpUI() {

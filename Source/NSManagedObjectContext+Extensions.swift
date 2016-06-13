@@ -59,27 +59,18 @@ extension NSManagedObjectContext {
         )
     }
 
-    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType>() -> [ObjectType] {
-
-        let request = ObjectType.sortedFetchRequest
-
-        do {
-            guard let objects = try executeFetchRequest(request) as? [ObjectType] else {
-                fatalError("Unable to fetch class \(ObjectType.self) with entityName \(ObjectType.entityName)")
-            }
-            return objects
-        } catch {
-            fatalError("Error fetching: \(error)")
-        }
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(`where` key: ObjectType.Key, matches value: AnyObject) -> [ObjectType] {
+        let predicate = NSPredicate(format: "\(key.rawValue) = %@", argumentArray: [value])
+        return all(predicate: predicate)
     }
 
-    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(`where` key: ObjectType.Key, matches value: AnyObject) -> [ObjectType] {
-
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(predicate predicate: NSPredicate) -> [ObjectType] {
         let request = ObjectType.sortedFetchRequest
-        let predicate = NSPredicate(format: "\(key.rawValue) = %@", argumentArray: [value])
-
         request.predicate = predicate
+        return all(request: request)
+    }
 
+    public func all<ObjectType: NSManagedObject where ObjectType: ManagedObjectType, ObjectType: KeyCodable>(request request: NSFetchRequest = ObjectType.sortedFetchRequest) -> [ObjectType] {
         do {
             guard let objects = try executeFetchRequest(request) as? [ObjectType] else {
                 fatalError("Unable to fetch class \(ObjectType.self) with entityName \(ObjectType.entityName)")
